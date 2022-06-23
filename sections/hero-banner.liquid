@@ -1,0 +1,121 @@
+{% if section.settings.white_text %}
+  {% assign font_color = 'text-white' %}
+{% endif %}
+
+<style>
+  .main-banner-bg {
+    background-image: url({{ section.settings.image | img_url: '1440x' }});
+    background-position: right bottom;
+  }
+  #heromobile {
+    display: none;
+  }
+  @media screen and (max-width: 820px) {
+    .main-banner-bg {
+      background-image: url({{ section.settings.image_2 | img_url: '414x' }});
+      background-position: center;
+    }
+    #herodesktop {
+      display: none;
+    }
+    #heromobile {
+       display: block;
+     }
+    :-webkit-any(article, aside, nav, section) :-webkit-any(article, aside, nav, section) h1 { 
+  margin-block-start: -0.85em!important;
+}
+  }
+</style>
+
+<!-- HEADER -->
+<div id="herodesktop">
+<section class="hero-full">
+  <div class="hero-full h-414px md:h-700px bg-cover main-banner-bg">
+      <div class="container h-full flex items-start md:items-center text-left px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+          <div class="w-full md:w-2/5 py-8 md:py-0">
+              <h1 class="font-ogg font-hero text-2xl md:text-3xl lg:text-4xl {{ font_color }} mb-6" section-heading>{{ section.settings.heading }}</h1>
+              <h4 class="font-univers-sub text-base md:text-lg lg:text-xl {{ font_color }} tracking-wider xl:px-12 mb-6" section-subheading>{{ section.settings.subheading }}</h4>
+            <p class="font-univers-small text-base {{ font_color }} mb-3">{{ section.settings.additionalinfo }}</p>
+              <a href="{{ section.settings.button_link_1 }}" class="font-univers-cta inline-block bg-button text-lg md:text-xl lg:text-2xl rounded-md py-4 md:py-5 px-16 my-4">$149 (5% OFF)</a>
+          </div>
+      </div>
+  </div>
+</section>
+</div>
+
+<div id="heromobile">
+<section class="hero-full">
+  <div class="hero-full h-414px md:h-700px bg-cover main-banner-bg">
+  </div>
+  <div class="container-mobile h-full text-center px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+          <div class="w-full md:w-2/5 py-8 md:py-0">
+              <h1 class="font-ogg-mobile font-hero-mobile text-2xl md:text-3xl lg:text-4xl {{ font_color }} mb-6" section-heading>{{ section.settings.heading }}</h1>
+              <span class="font-univers-sub-mobile text-base md:text-lg lg:text-xl {{ font_color }} tracking-wider xl:px-12 mb-6" style="max-width: 300px;" section-subheading>For a limited time, bundle<br>your bliss and save.</span>
+            <p class="font-univers-small text-base {{ font_color }} mb-3">{{ section.settings.additionalinfo }}</p>
+              <a href="{{ section.settings.button_link_1 }}" class="font-univers-cta inline-block bg-button text-lg md:text-xl lg:text-2xl rounded-md py-4 md:py-5 px-16 my-4">SHOP DREAM LIGHT</a>
+          </div>
+      </div>
+</section>
+</div>
+
+<script src="{{ 'dynamic-hero.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Heading",
+      "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Sub Heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "additionalinfo",
+      "default": "Additional Info",
+      "label": "Additional Info"
+    },
+    {
+      "type": "checkbox",
+      "id": "white_text",
+      "label": "Has white text"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "default": "Button label",
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+      "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
